@@ -1,0 +1,30 @@
+{
+    "sourceFile": ".gitignore",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1762530460705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762530466963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,7 +22,6 @@\n # Editor\r\n .vscode/\r\n .idea/\r\n \r\n-# Arquivos de sistema\r\n .DS_Store\r\n Thumbs.db\r\n"
+                },
+                {
+                    "date": 1762530475146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,27 @@\n+# Dependências\r\n+/node_modules\r\n+/package-lock.json\r\n+\r\n+# Logs\r\n+npm-debug.log*\r\n+yarn-debug.log*\r\n+yarn-error.log*\r\n+lerna-debug.log*\r\n+\r\n+# Variáveis de ambiente\r\n+.env\r\n+.env.local\r\n+.env.development.local\r\n+.env.test.local\r\n+.env.production.local\r\n+\r\n+\r\n+/dist\r\n+/build\r\n+\r\n+\r\n+.vscode/\r\n+.idea/\r\n+\r\n+.DS_Store\r\n+Thumbs.db\r\n"
+                },
+                {
+                    "date": 1762530482770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-# Dependências\r\n+\r\n /node_modules\r\n /package-lock.json\r\n \r\n \r\n"
+                }
+            ],
+            "date": 1762530460705,
+            "name": "Commit-0",
+            "content": "# Dependências\r\n/node_modules\r\n/package-lock.json\r\n\r\n# Logs\r\nnpm-debug.log*\r\nyarn-debug.log*\r\nyarn-error.log*\r\nlerna-debug.log*\r\n\r\n# Variáveis de ambiente\r\n.env\r\n.env.local\r\n.env.development.local\r\n.env.test.local\r\n.env.production.local\r\n\r\n# Build\r\n/dist\r\n/build\r\n\r\n# Editor\r\n.vscode/\r\n.idea/\r\n\r\n# Arquivos de sistema\r\n.DS_Store\r\nThumbs.db\r\n"
+        }
+    ]
+}

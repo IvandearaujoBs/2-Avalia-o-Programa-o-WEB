@@ -1,0 +1,26 @@
+{
+    "sourceFile": "vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1762530366001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762530373181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \r\n   // 2. Formata o arquivo automaticamente toda vez que você salva\r\n   \"editor.formatOnSave\": true,\r\n   \r\n-  // 3. Diz ao ESLint para validar arquivos JavaScript, React e HTML\r\n+\r\n   \"eslint.validate\": [\r\n     \"javascript\",\r\n     \"javascriptreact\",\r\n     \"html\"\r\n"
+                },
+                {
+                    "date": 1762530382195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n {\r\n   // 1. Define o Prettier como o formatador padrão para todos os arquivos\r\n   \"editor.defaultFormatter\": \"esbenp.prettier-vscode\",\r\n   \r\n-  // 2. Formata o arquivo automaticamente toda vez que você salva\r\n   \"editor.formatOnSave\": true,\r\n   \r\n   \"eslint.validate\": [\r\n     \"javascript\",\r\n"
+                }
+            ],
+            "date": 1762530366001,
+            "name": "Commit-0",
+            "content": "{\r\n  // 1. Define o Prettier como o formatador padrão para todos os arquivos\r\n  \"editor.defaultFormatter\": \"esbenp.prettier-vscode\",\r\n  \r\n  // 2. Formata o arquivo automaticamente toda vez que você salva\r\n  \"editor.formatOnSave\": true,\r\n  \r\n  // 3. Diz ao ESLint para validar arquivos JavaScript, React e HTML\r\n  \"eslint.validate\": [\r\n    \"javascript\",\r\n    \"javascriptreact\",\r\n    \"html\"\r\n  ]\r\n}\r\n"
+        }
+    ]
+}

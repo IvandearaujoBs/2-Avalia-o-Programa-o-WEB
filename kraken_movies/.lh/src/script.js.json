@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/script.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1762813745838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762813762158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n document.addEventListener('DOMContentLoaded', function() {\r\n-    \n\\ No newline at end of file\n+    const searchForm = document.querySelector('.search-form');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1762813768812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+document.addEventListener('DOMContentLoaded', function() {\r\n+    const searchForm = document.querySelector('.search-form');\r\n+    \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1762813745838,
+            "name": "Commit-0",
+            "content": "document.addEventListener('DOMContentLoaded', function() {"
+        }
+    ]
+}

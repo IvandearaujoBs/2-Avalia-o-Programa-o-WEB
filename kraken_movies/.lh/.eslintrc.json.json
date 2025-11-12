@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".eslintrc.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1762529906545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1762529906545,
+            "name": "Commit-0",
+            "content": "{\r\n  \"env\": {\r\n    \"browser\": true,\r\n    \"es2021\": true,\r\n    \"node\": true\r\n  },\r\n  \"extends\": [\r\n    \"eslint:recommended\",\r\n    \"plugin:prettier/recommended\"\r\n  ],\r\n  \"parserOptions\": {\r\n    \"ecmaVersion\": \"latest\",\r\n    \"sourceType\": \"module\"\r\n  },\r\n  \"rules\": {\r\n    \"no-console\": \"warn\",\r\n    \"no-unused-vars\": \"warn\"\r\n  }\r\n}"
+        }
+    ]
+}

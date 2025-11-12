@@ -1,0 +1,78 @@
+{
+    "sourceFile": "src/assets/styles/detail_page.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1762804895902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762806442918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n .detail-container {\r\n     display: flex;\r\n     gap: 40px;\r\n     margin-top: 30px;\r\n-    color: #ffffff;\r\n+    color: ;\r\n }\r\n \r\n .poster-area {\r\n     flex-shrink: 0; /* Não permite que o pôster encolha */\r\n"
+                },
+                {
+                    "date": 1762806469462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n /* Estilos específicos para a página de detalhes */\r\n \r\n main {\r\n-    /* Garante que o main da página de detalhes tenha um padding adequado */\r\n+\r\n     padding: 20px;\r\n }\r\n \r\n .detail-container {\r\n     display: flex;\r\n     gap: 40px;\r\n     margin-top: 30px;\r\n-    color: ;\r\n+    color: oklch(12.9% 0.042 264.695);\r\n }\r\n \r\n .poster-area {\r\n     flex-shrink: 0; /* Não permite que o pôster encolha */\r\n"
+                },
+                {
+                    "date": 1762806475653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n /* Estilos específicos para a página de detalhes */\r\n \r\n main {\r\n-\r\n+   background-color: ;\r\n     padding: 20px;\r\n }\r\n \r\n .detail-container {\r\n"
+                },
+                {
+                    "date": 1762806527903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n /* Estilos específicos para a página de detalhes */\r\n \r\n main {\r\n-   background-color: ;\r\n+   background-color: 111827;\r\n     padding: 20px;\r\n }\r\n \r\n .detail-container {\r\n"
+                },
+                {
+                    "date": 1762806533688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n /* Estilos específicos para a página de detalhes */\r\n \r\n main {\r\n-   background-color: 111827;\r\n+   background-color: #111827;\r\n     padding: 20px;\r\n }\r\n \r\n .detail-container {\r\n"
+                },
+                {
+                    "date": 1762806592069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n }\r\n \r\n .poster-area {\r\n     flex-shrink: 0; /* Não permite que o pôster encolha */\r\n-    width: 300px; /* Largura fixa para o pôster */\r\n+    width: 300px; \r\n }\r\n \r\n .detail-poster {\r\n     width: 100%;\r\n"
+                },
+                {
+                    "date": 1762806598464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     color: oklch(12.9% 0.042 264.695);\r\n }\r\n \r\n .poster-area {\r\n-    flex-shrink: 0; /* Não permite que o pôster encolha */\r\n+    flex-shrink: 0; \r\n     width: 300px; \r\n }\r\n \r\n .detail-poster {\r\n"
+                },
+                {
+                    "date": 1762806609940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-/* Estilos específicos para a página de detalhes */\r\n \r\n+\r\n main {\r\n    background-color: #111827;\r\n     padding: 20px;\r\n }\r\n@@ -24,9 +24,9 @@\n     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);\r\n }\r\n \r\n .info-area {\r\n-    flex-grow: 1; /* Permite que a área de informações ocupe o espaço restante */\r\n+    flex-grow: 1; \r\n }\r\n \r\n .detail-title {\r\n     font-size: 2.5em;\r\n"
+                },
+                {
+                    "date": 1762806615151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n .detail-title {\r\n     font-size: 2.5em;\r\n     margin-top: 0;\r\n     margin-bottom: 10px;\r\n-    padding-left: 0; /* Remove o padding do h1/h2 do CSS principal */\r\n+    padding-left: 0;\r\n }\r\n \r\n .detail-metadata {\r\n     font-size: 1.1em;\r\n"
+                },
+                {
+                    "date": 1762806625420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,14 +36,14 @@\n }\r\n \r\n .detail-metadata {\r\n     font-size: 1.1em;\r\n-    color: #9ca3af; /* Cor de texto secundária */\r\n+    color: #9ca3af; \r\n     margin-bottom: 20px;\r\n }\r\n \r\n .rating {\r\n-    color: #facc15; /* Cor amarela para o rating */\r\n+    color: #facc15; \r\n     font-weight: bold;\r\n }\r\n \r\n .detail-synopsis {\r\n"
+                },
+                {
+                    "date": 1762806653030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n }\r\n \r\n .detail-metadata {\r\n     font-size: 1.1em;\r\n-    color: #9ca3af; \r\n+    color: #oklch(27.9% 0.041 260.031); \r\n     margin-bottom: 20px;\r\n }\r\n \r\n .rating {\r\n"
+                },
+                {
+                    "date": 1762806664109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n }\r\n \r\n .detail-metadata {\r\n     font-size: 1.1em;\r\n-    color: #oklch(27.9% 0.041 260.031); \r\n+    color: oklch(27.9% 0.041 260.031); \r\n     margin-bottom: 20px;\r\n }\r\n \r\n .rating {\r\n"
+                },
+                {
+                    "date": 1762807090415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n     color: #9ca3af;\r\n }\r\n \r\n .watch-button {\r\n-    background-color: #ef4444; /* Vermelho vibrante */\r\n+    background-color: #ef4444; \r\n     color: #ffffff;\r\n     border: none;\r\n     padding: 15px 30px;\r\n     font-size: 1.2em;\r\n"
+                },
+                {
+                    "date": 1762807100705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,9 @@\n \r\n /* Media Query para telas menores */\r\n @media (max-width: 768px) {\r\n     .detail-container {\r\n-        flex-direction: column; /* Empilha o pôster e as informações */\r\n+        flex-direction: column; \r\n         gap: 20px;\r\n     }\r\n \r\n     .poster-area {\r\n"
+                },
+                {
+                    "date": 1762807107171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,9 +99,9 @@\n     }\r\n \r\n     .poster-area {\r\n         width: 100%;\r\n-        max-width: 300px; /* Limita a largura do pôster em telas menores */\r\n+        max-width: 300px; \r\n         margin: 0 auto;\r\n     }\r\n \r\n     .detail-title {\r\n"
+                }
+            ],
+            "date": 1762804895902,
+            "name": "Commit-0",
+            "content": "/* Estilos específicos para a página de detalhes */\r\n\r\nmain {\r\n    /* Garante que o main da página de detalhes tenha um padding adequado */\r\n    padding: 20px;\r\n}\r\n\r\n.detail-container {\r\n    display: flex;\r\n    gap: 40px;\r\n    margin-top: 30px;\r\n    color: #ffffff;\r\n}\r\n\r\n.poster-area {\r\n    flex-shrink: 0; /* Não permite que o pôster encolha */\r\n    width: 300px; /* Largura fixa para o pôster */\r\n}\r\n\r\n.detail-poster {\r\n    width: 100%;\r\n    height: auto;\r\n    border-radius: 8px;\r\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);\r\n}\r\n\r\n.info-area {\r\n    flex-grow: 1; /* Permite que a área de informações ocupe o espaço restante */\r\n}\r\n\r\n.detail-title {\r\n    font-size: 2.5em;\r\n    margin-top: 0;\r\n    margin-bottom: 10px;\r\n    padding-left: 0; /* Remove o padding do h1/h2 do CSS principal */\r\n}\r\n\r\n.detail-metadata {\r\n    font-size: 1.1em;\r\n    color: #9ca3af; /* Cor de texto secundária */\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.rating {\r\n    color: #facc15; /* Cor amarela para o rating */\r\n    font-weight: bold;\r\n}\r\n\r\n.detail-synopsis {\r\n    font-size: 1em;\r\n    line-height: 1.6;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n.detail-cast h2 {\r\n    font-size: 1.5em;\r\n    margin-bottom: 10px;\r\n    padding-left: 0;\r\n}\r\n\r\n.detail-cast ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n.detail-cast li {\r\n    margin-bottom: 5px;\r\n    color: #9ca3af;\r\n}\r\n\r\n.watch-button {\r\n    background-color: #ef4444; /* Vermelho vibrante */\r\n    color: #ffffff;\r\n    border: none;\r\n    padding: 15px 30px;\r\n    font-size: 1.2em;\r\n    font-weight: bold;\r\n    border-radius: 8px;\r\n    cursor: pointer;\r\n    transition: background-color 0.3s;\r\n}\r\n\r\n.watch-button:hover {\r\n    background-color: #dc2626;\r\n}\r\n\r\n.related-content h2 {\r\n    font-size: 2em;\r\n    margin-top: 50px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n/* Media Query para telas menores */\r\n@media (max-width: 768px) {\r\n    .detail-container {\r\n        flex-direction: column; /* Empilha o pôster e as informações */\r\n        gap: 20px;\r\n    }\r\n\r\n    .poster-area {\r\n        width: 100%;\r\n        max-width: 300px; /* Limita a largura do pôster em telas menores */\r\n        margin: 0 auto;\r\n    }\r\n\r\n    .detail-title {\r\n        font-size: 2em;\r\n    }\r\n}"
+        }
+    ]
+}

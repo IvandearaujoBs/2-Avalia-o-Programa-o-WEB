@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/assets/styles/main.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1762702056263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762702062193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+h1 {\r\n+    clor\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1762702068996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,3 @@\n h1 {\r\n-    clor\r\n-}\n-h1\n\\ No newline at end of file\n+bac\r\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1762702056263,
+            "name": "Commit-0",
+            "content": "h1"
+        }
+    ]
+}
