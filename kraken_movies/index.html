@@ -1,24 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles.css">
     <title>Kraken movies - Filmes e Séries</title>
-    <link rel="stylesheet" href="src\assets\styles\styles.css">
+    <link rel="shortcut icon" href="src/image/favicon.png" type="src/image/x-icon">
 </head>
 <body>
     <div class="container">
-
-        <header class="header">
+        <header class="header"> 
+            <div class="logo"><img src="src/image/kraken_movies_logoS.png" alt="logo"></div>
             <div class="header-content">
                 <h1 class="logo">Kraken Movies</h1>
                 <p class="subtitle">Encontre e assista filmes e séries em alta qualidade</p>
             </div>
         </header>
-
+       
+        <div class="search-container">
         <section class="search-section">
-            <div class="search-container">
                 <input 
                     type="text" 
                     id="searchInput" 
@@ -33,19 +33,38 @@
                 <button class="filter-btn active" data-filter="all">ALL</button>
                 <button class="filter-btn" data-filter="movies">MOVIES</button>
                 <button class="filter-btn" data-filter="series">SERIES</button>
-                <button class="filter-btn" data-filter="series">KIDS</button>
+                <button class="filter-btn" data-filter="kids">KIDS</button>
             </div>
-
         </section>
+
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
             <p>Loading content...</p>
         </div>
-
         <div id="error" class="error hidden"></div>
 
         <section class="content-section">
-            <div id="moviesGrid" class="movies-grid">
+            <div id="tabsContainer" class="tabs-container">
+                <div id="moviesTab" class="tab-content">
+                    <div class="section-header">
+                        <h2>Movies</h2>
+                    </div>
+                    <div id="moviesCategories" class="categories-container"></div>
+                </div>
+
+                <div id="seriesTab" class="tab-content">
+                    <div class="section-header">
+                        <h2>Series</h2>
+                    </div>
+                    <div id="seriesCategories" class="categories-container"></div>
+                </div>
+
+                <div id="kidsTab" class="tab-content">
+                    <div class="section-header">
+                        <h2>Kids</h2>
+                    </div>
+                    <div id="kidsCategories" class="categories-container"></div>
+                </div>
             </div>
         </section>
 
@@ -78,7 +97,9 @@
             </div>
         </div>
     </div>
-
-    <script src="src\script.js"></script>
+<footer>
+    <p>© 2024 Kraken Movies. All rights reserved.</p>
+</footer>
+    <script src="src/script.js"></script>
 </body>
 </html>

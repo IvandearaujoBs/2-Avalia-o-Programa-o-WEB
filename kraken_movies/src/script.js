@@ -1,424 +1,162 @@
-
-const API_CONFIG = {
-    baseURL: 'https://api.embedmovies.org/api',
-};
-
 const appState = {
-    currentPage: 1,
-    itemsPerPage: 20,
     allMovies: [],
-    filteredMovies: [],
-    currentFilter: 'all',
-    searchQuery: '',
-    isLoading: false
+    currentFilter: 'all'
 };
 
-const elements = {
-    searchInput: document.getElementById('searchInput'),
-    searchBtn: document.getElementById('searchBtn'),
-    filterBtns: document.querySelectorAll('.filter-btn'),
-    moviesGrid: document.getElementById('moviesGrid'),
-    loading: document.getElementById('loading'),
-    error: document.getElementById('error'),
-    noResults: document.getElementById('noResults'),
-    pagination: document.getElementById('pagination'),
-    prevBtn: document.getElementById('prevBtn'),
-    nextBtn: document.getElementById('nextBtn'),
-    pageInfo: document.getElementById('pageInfo'),
-    modal: document.getElementById('movieModal'),
-    modalClose: document.querySelector('.modal-close')
-};
-
-/**
- * 
- * @param {string} query 
- * @returns {Promise<Array>} 
- */
-async function searchMovies(query) {
-    try {
-        showLoading(true);
-        hideError();
-        const movies = await fetchMoviesFromEmbedAPI(query);
-
-        appState.allMovies = movies;
-        appState.currentPage = 1;
-        filterMovies();
-        displayMovies();
-
-    } catch (error) {
-        console.error('Erro ao buscar filmes:', error);
-        showError('Erro ao buscar filmes. Tente novamente mais tarde.');
-    } finally {
-        showLoading(false);
-    }
-}
-
-/**
- * 
- * @param {string} query 
- * @returns {Promise<Array>}
- */
-async function fetchMoviesFromEmbedAPI(query) {
-    try {
-        const endpoints = [
-            `https://embedmovies.org/api/search?q=${encodeURIComponent(query)}`,
-            `https://api.embedmovies.org/search?q=${encodeURIComponent(query)}`,
-        ];
-
-        for (const endpoint of endpoints) {
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // Adicione headers necessários aqui
-                    }
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return formatMoviesData(data);
-                }
-            } catch (e) {
-                console.log(`Endpoint ${endpoint} não disponível`);
-            }
-        }
-
-        // Se nenhum endpoint funcionar, retorne dados de exemplo
-        return getExampleMovies(query);
-
-    } catch (error) {
-        console.error('Erro ao conectar com API:', error);
-        return getExampleMovies(query);
-    }
-}
-
-/**
- * Formata dados da API para o formato esperado
- * @param {Object} data - Dados da API
- * @returns {Array}
- */
-function formatMoviesData(data) {
-    // Adapte esta função conforme o formato da resposta da API
-    if (Array.isArray(data)) {
-        return data.map(item => ({
-            id: item.id || item.imdbId || Math.random(),
-            title: item.title || item.name || 'Sem título',
-            year: item.year || item.releaseDate?.split('-')[0] || 'N/A',
-            poster: item.poster || item.posterPath || '/placeholder.jpg',
-            description: item.description || item.overview || '',
-            type: item.type || (item.mediaType === 'tv' ? 'series' : 'movie'),
-            imdbId: item.imdbId || item.imdbID || '',
-            tmdbId: item.tmdbId || item.id || '',
-            rating: item.rating || item.voteAverage || 'N/A'
-        }));
-    }
-    return [];
-}
-
-/**
- * Retorna filmes de exemplo para demonstração
- * @param {string} query - Termo de busca
- * @returns {Array}
- */
-function getExampleMovies(query) {
-    const allExamples = [
-        {
-            id: 1,
-            title: 'Inception',
-            year: '2010',
-            poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu1F8dT7NIrjG.jpg',
-            description: 'Um ladrão que rouba segredos corporativos através da tecnologia de compartilhamento de sonhos recebe a tarefa inversa de plantar uma ideia.',
-            type: 'movie',
-            imdbId: 'tt1375666',
-            tmdbId: '27205',
-            rating: '8.8'
-        },
-        {
-            id: 2,
-            title: 'The Dark Knight',
-            year: '2008',
-            poster: 'https://image.tmdb.org/t/p/w220_and_h330_face/4lj1ikfsSmMZNyfdi8R8Tv5tsgb.jpg',
-            description: 'Quando a ameaça conhecida como o Coringa causa estragos e caos no povo de Gotham, Batman deve aceitar um dos testes psicológicos e físicos.',
-            type: 'movie',
-            imdbId: 'tt0468569',
-            tmdbId: '155',
-            rating: '9.0'
-        },
-        {
-            id: 3,
-            title: 'Breaking Bad',
-            year: '2008',
-            poster: 'https://image.tmdb.org/t/p/w220_and_h330_face/30erzlzIOtOK3k3T3BAl1GiVMP1.jpg',
-            description: 'Um professor de química desempregado diagnosticado com câncer terminal se une a um ex-aluno de meth para garantir o futuro de sua família.',
-            type: 'series',
-            imdbId: 'tt0903747',
-            tmdbId: '1396',
-            rating: '9.5'
-        },
-        {
-            id: 4,
-            title: 'Interstellar',
-            year: '2014',
-            poster: 'https://image.tmdb.org/t/p/w220_and_h330_face/6ricSDD83BClJsFdGB6x7cM0MFQ.jpg',
-            description: 'Um grupo de astronautas viaja através de um buraco de minhoca no espaço na tentativa de garantir a sobrevivência da humanidade.',
-            type: 'movie',
-            imdbId: 'tt0816692',
-            tmdbId: '157336',
-            rating: '8.6'
-        },
-        {
-            id: 5,
-            title: 'Stranger Things',
-            year: '2016',
-            poster: 'https://image.tmdb.org/t/p/w500/x2lpQiKNzs2xCx6/5ub52Fq7d4Oa8QYZ6qJYlJA.jpg',
-            description: 'Quando um menino desaparece, seus amigos, sua família e a polícia local devem lidar com forças estranhas e mistérios secretos.',
-            type: 'series',
-            imdbId: 'tt4574334',
-            tmdbId: '66732',
-            rating: '8.7'
-        },
-        {
-            id: 6,
-            title: 'Pulp Fiction',
-            year: '1994',
-            poster: 'https://image.tmdb.org/t/p/w500/d5iIlW_szoE486cd4MKAdOvxA4t.jpg',
-            description: 'A vida de vários criminosos de Los Angeles se entrelaça em quatro histórias de violência e redenção.',
-            type: 'movie',
-            imdbId: 'tt0110912',
-            tmdbId: '680',
-            rating: '8.9'
-        }
+function getExampleMovies() {
+    return [
+        { id: 1, title: 'Inception', year: '2010', poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu1F8dT7NIrjG.jpg', type: 'movie', rating: '8.8' },
+        { id: 1, title: 'Inception', year: '2010', poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu1F8dT7NIrjG.jpg', type: 'movie', rating: '8.8' },
+        { id: 1, title: 'Inception', year: '2010', poster: 'https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu1F8dT7NIrjG.jpg', type: 'movie', rating: '8.8' },
+        { id: 2, title: 'The Dark Knight', year: '2008', poster: 'https://image.tmdb.org/t/p/w220_and_h330_face/4lj1ikfsSmMZNyfdi8R8Tv5tsgb.jpg', type: 'movie', rating: '9.0' },
+        { id: 3, title: 'Toy Story', year: '1995', poster: 'https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSFDP3dO0lJo.jpg', type: 'kids', rating: '8.3' },
+        { id: 4, title: 'Breaking Bad', year: '2008', poster: 'https://image.tmdb.org/t/p/w500/30erzlzIOtOK3k3T3BAl1GiVMP1.jpg', type: 'series', rating: '9.5' },
+        { id: 5, title: 'The Matrix', year: '1999', poster: 'https://image.tmdb.org/t/p/w500/vgpXmVaVyXwC6NwxCZs2WMRrLn2.jpg', type: 'movie', rating: '8.7' },
+        { id: 6, title: 'Avatar', year: '2009', poster: 'https://image.tmdb.org/t/p/w500/6ELCZBJHcNxIx3hy0gnVG2i7cRJ.jpg', type: 'movie', rating: '7.8' },
+        { id: 7, title: 'Stranger Things', year: '2016', poster: 'https://image.tmdb.org/t/p/w500/x2lpQiKNzs2xCx6/5ub52Fq7d4Oa8QYZ6qJYlJA.jpg', type: 'series', rating: '8.7' },
+        { id: 8, title: 'Game of Thrones', year: '2011', poster: 'https://image.tmdb.org/t/p/w500/u3bZgnEu2PAok7onSZJRfXS44qd.jpg', type: 'series', rating: '9.2' },
+        { id: 9, title: 'Finding Nemo', year: '2003', poster: 'https://image.tmdb.org/t/p/w500/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg', type: 'kids', rating: '8.1' },
+        { id: 10, title: 'The Shawshank Redemption', year: '1994', poster: 'https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg', type: 'movie', rating: '9.3' },
+        { id: 11, title: 'The Mandalorian', year: '2019', poster: 'https://image.tmdb.org/t/p/w500/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg', type: 'series', rating: '8.8' },
+        { id: 12, title: 'Frozen', year: '2013', poster: 'https://image.tmdb.org/t/p/w500/kgwjIb2JDHRhNk13lmSxiClFjVk.jpg', type: 'kids', rating: '7.4' },
+        { id: 13, title: 'Pulp Fiction', year: '1994', poster: 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', type: 'movie', rating: '8.9' },
+        { id: 14, title: 'The Crown', year: '2016', poster: 'https://image.tmdb.org/t/p/w500/1M876KPjulVwppEpldhdc8V4o68.jpg', type: 'series', rating: '8.6' },
+        { id: 15, title: 'The Lion King', year: '1994', poster: 'https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg', type: 'kids', rating: '8.5' }
     ];
-
-    // Filtra baseado na query
-    if (!query) return allExamples;
-
-    return allExamples.filter(movie =>
-        movie.title.toLowerCase().includes(query.toLowerCase()) ||
-        movie.description.toLowerCase().includes(query.toLowerCase())
-    );
 }
 
-// ============================================
-// Funções de Filtro e Exibição
-// ============================================
-
-/**
- * Filtra filmes baseado no tipo selecionado
- */
-function filterMovies() {
-    appState.filteredMovies = appState.allMovies.filter(movie => {
-        if (appState.currentFilter === 'all') return true;
-        if (appState.currentFilter === 'movies') return movie.type === 'movie';
-        if (appState.currentFilter === 'series') return movie.type === 'series';
-        return true;
-    });
-}
-
-/**
- * Exibe os filmes na página
- */
-function displayMovies() {
-    const startIndex = (appState.currentPage - 1) * appState.itemsPerPage;
-    const endIndex = startIndex + appState.itemsPerPage;
-    const moviesToDisplay = appState.filteredMovies.slice(startIndex, endIndex);
-
-    if (moviesToDisplay.length === 0) {
-        elements.moviesGrid.innerHTML = '';
-        elements.noResults.classList.remove('hidden');
-        elements.pagination.classList.add('hidden');
-        return;
+function getCategoryMovies(category, type) {
+    const movies = appState.allMovies.filter(m => type === 'all' || m.type === type);
+    const shuffled = [...movies].sort(() => Math.random() - 0.5);
+    switch (category) {
+        case 'releases': return shuffled.sort((a,b)=>b.year-a.year);
+        case 'popular': return shuffled.sort((a,b)=>b.rating-a.rating);
+        case 'classics': return shuffled.filter(m=>m.year<2000);
+        case 'suggestions': return shuffled;
+        case 'blockbusters': return shuffled.sort((a,b)=>b.rating-a.rating).slice(0,12);
+        case 'collection': return shuffled.slice(0,12);
+        default: return shuffled;
     }
+}
 
-    elements.noResults.classList.add('hidden');
-    elements.moviesGrid.innerHTML = moviesToDisplay.map(movie => createMovieCard(movie)).join('');
+function createCategorySection(title, id, type, isAllSection = false) {
+    const movies = getCategoryMovies(id, type);
+    const visible = movies.slice(0,6);
+    const hidden = movies.slice(6);
+    
+    let html = `<div class="category-section"><h3 class="category-title">${title}</h3><div class="category-grid">`;
+    
+    if (isAllSection) {
+        movies.forEach(m => html += createCard(m));
+        html += `</div></div>`;
+    } else {
+        visible.forEach(m => html += createCard(m));
+        html += `</div>`;
+        
+        if (hidden.length > 0) {
+            html += `<div id="hidden-${id}-${type}" class="hidden-content" style="display:none"><div class="category-grid">`;
+            hidden.forEach(m => html += createCard(m));
+            html += `</div></div><button class="show-more-btn" onclick="toggleCategory('${id}-${type}',${hidden.length})">Mostrar Mais (${hidden.length})</button>`;
+        }
+        html += `</div>`;
+    }
+    return html;
+}
 
-    // Adiciona event listeners aos cards
-    document.querySelectorAll('.movie-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const movieId = card.dataset.movieId;
-            const movie = appState.allMovies.find(m => m.id == movieId);
-            if (movie) openModal(movie);
+function createCard(m) {
+    return `<div class="category-movie-card" onclick="openModal(${m.id})">
+        <img src="${m.poster}" class="category-movie-poster" alt="${m.title}">
+        <div class="category-movie-info"><p class="category-movie-title">${m.title}</p><p class="category-movie-year">${m.year}</p></div></div>`;
+}
+
+function toggleCategory(id, count) {
+    const block = document.getElementById(`hidden-${id}`);
+    const btn = event.target;
+    if (block.style.display === 'none') {
+        block.style.display = 'block';
+        btn.textContent = 'Mostrar Menos';
+    } else {
+        block.style.display = 'none';
+        btn.textContent = `Mostrar Mais (${count})`;
+    }
+}
+
+function openModal(id) {
+    const m = appState.allMovies.find(x => x.id === id);
+    if (!m) return;
+    document.getElementById('modalTitle').textContent = m.title;
+    document.getElementById('modalYear').textContent = m.year;
+    document.getElementById('modalDescription').textContent = m.type.toUpperCase();
+    document.getElementById('modalPoster').src = m.poster;
+    document.getElementById('movieModal').classList.remove('hidden');
+}
+
+function filterContent(filterType) {
+    appState.currentFilter = filterType;
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-filter="${filterType}"]`).classList.add('active');
+    
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active-tab');
+    });
+    
+    if (filterType === 'all') {
+        document.getElementById('moviesTab').classList.add('active-tab');
+        document.getElementById('moviesCategories').innerHTML = createAllSection();
+    } else {
+        document.getElementById(`${filterType}Tab`).classList.add('active-tab');
+        renderCategories(filterType);
+    }
+}
+
+function createAllSection() {
+    const allMovies = appState.allMovies;
+    
+    let html = `<div class="category-section"><h3 class="category-title">🎬 Todos os Conteúdos</h3><div class="category-grid">`;
+    allMovies.forEach(m => html += createCard(m));
+    html += `</div></div>`;
+    
+    return html;
+}
+
+function renderCategories(type) {
+    const container = document.getElementById(`${type}Categories`);
+    const titles = [
+        '🎬 Lançamentos',
+        '🔥 Mais Assistidos', 
+        '⏳ Clássicos',
+        '✨ Sugestões',
+        '💰 Campeões de Bilheteria',
+        '🎞️ Coletânea'
+    ];
+    const ids = ['releases','popular','classics','suggestions','blockbusters','collection'];
+    
+    container.innerHTML = titles.map((title, index) => {
+        const contentType = type === 'movies' ? 'movie' : type;
+        return createCategorySection(title, ids[index], contentType, false);
+    }).join('');
+}
+
+function renderAll() {
+    filterContent('all');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    appState.allMovies = getExampleMovies();
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+            filterContent(filter);
         });
     });
-
-    updatePagination();
-}
-
-/**
- * Cria o HTML de um card de filme
- * @param {Object} movie - Dados do filme
- * @returns {string}
- */
-function createMovieCard(movie) {
-    const typeLabel = movie.type === 'series' ? 'Série' : 'Filme';
-    return `
-        <div class="movie-card" data-movie-id="${movie.id}">
-            <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22%3E%3Crect fill=%22%23404040%22 width=%22200%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%23888%22%3ESem Imagem%3C/text%3E%3C/svg%3E'">
-            <div class="movie-overlay">
-                <button class="overlay-btn">Ver Detalhes</button>
-            </div>
-            <div class="movie-info">
-                <h3 class="movie-title" title="${movie.title}">${movie.title}</h3>
-                <p class="movie-year">${movie.year} • ${typeLabel}</p>
-                ${movie.rating !== 'N/A' ? `<span class="movie-rating">⭐ ${movie.rating}</span>` : ''}
-            </div>
-        </div>
-    `;
-}
-
-/**
- * Atualiza os controles de paginação
- */
-function updatePagination() {
-    const totalPages = Math.ceil(appState.filteredMovies.length / appState.itemsPerPage);
-
-    if (totalPages <= 1) {
-        elements.pagination.classList.add('hidden');
-        return;
-    }
-
-    elements.pagination.classList.remove('hidden');
-    elements.pageInfo.textContent = `Página ${appState.currentPage} de ${totalPages}`;
-    elements.prevBtn.disabled = appState.currentPage === 1;
-    elements.nextBtn.disabled = appState.currentPage === totalPages;
-}
-
-// ============================================
-// Modal
-// ============================================
-
-/**
- * Abre o modal com detalhes do filme
- * @param {Object} movie - Dados do filme
- */
-function openModal(movie) {
-    document.getElementById('modalTitle').textContent = movie.title;
-    document.getElementById('modalYear').textContent = `${movie.year} • ${movie.type === 'series' ? 'Série' : 'Filme'}`;
-    document.getElementById('modalDescription').textContent = movie.description;
-    document.getElementById('modalPoster').src = movie.poster;
-
-    // Links para TMDB e IMDb
-    if (movie.tmdbId) {
-        document.getElementById('tmdbLink').href = `https://www.themoviedb.org/${movie.type === 'series' ? 'tv' : 'movie'}/${movie.tmdbId}`;
-    }
-
-    if (movie.imdbId) {
-        document.getElementById('imdbLink').href = `https://www.imdb.com/title/${movie.imdbId}/`;
-    }
-
-    // Link para assistir (usando EmbedMovies)
-    if (movie.imdbId) {
-        document.getElementById('watchLink').href = `https://embedmovies.org/?s=${encodeURIComponent(movie.title)}`;
-    } else {
-        document.getElementById('watchLink').href = `https://embedmovies.org/?s=${encodeURIComponent(movie.title)}`;
-    }
-
-    elements.modal.classList.remove('hidden');
-}
-
-/**
- * Fecha o modal
- */
-function closeModal() {
-    elements.modal.classList.add('hidden');
-}
-
-// ============================================
-// Utilitários
-// ============================================
-
-/**
- * Mostra/esconde o spinner de carregamento
- * @param {boolean} show
- */
-function showLoading(show) {
-    if (show) {
-        elements.loading.classList.remove('hidden');
-    } else {
-        elements.loading.classList.add('hidden');
-    }
-}
-
-/**
- * Mostra mensagem de erro
- * @param {string} message
- */
-function showError(message) {
-    elements.error.textContent = message;
-    elements.error.classList.remove('hidden');
-}
-
-/**
- * Esconde mensagem de erro
- */
-function hideError() {
-    elements.error.classList.add('hidden');
-}
-
-// ============================================
-// Event Listeners
-// ============================================
-
-// Busca ao clicar no botão
-elements.searchBtn.addEventListener('click', () => {
-    appState.searchQuery = elements.searchInput.value.trim();
-    if (appState.searchQuery) {
-        searchMovies(appState.searchQuery);
-    }
-});
-
-// Busca ao pressionar Enter
-elements.searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        elements.searchBtn.click();
-    }
-});
-
-// Filtros
-elements.filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        elements.filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        appState.currentFilter = btn.dataset.filter;
-        appState.currentPage = 1;
-        filterMovies();
-        displayMovies();
+    
+    document.querySelector('.modal-close').addEventListener('click', ()=>{
+        document.getElementById('movieModal').classList.add('hidden');
     });
-});
-
-// Paginação
-elements.prevBtn.addEventListener('click', () => {
-    if (appState.currentPage > 1) {
-        appState.currentPage--;
-        displayMovies();
-        window.scrollTo(0, 0);
-    }
-});
-
-elements.nextBtn.addEventListener('click', () => {
-    const totalPages = Math.ceil(appState.filteredMovies.length / appState.itemsPerPage);
-    if (appState.currentPage < totalPages) {
-        appState.currentPage++;
-        displayMovies();
-        window.scrollTo(0, 0);
-    }
-});
-
-// Modal
-elements.modalClose.addEventListener('click', closeModal);
-elements.modal.addEventListener('click', (e) => {
-    if (e.target === elements.modal) closeModal();
-});
-
-// ============================================
-// Inicialização
-// ============================================
-
-// Carrega filmes de exemplo ao iniciar
-document.addEventListener('DOMContentLoaded', () => {
-    appState.allMovies = getExampleMovies('');
-    filterMovies();
-    displayMovies();
+    
+    renderAll();
 });
