@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="src/header-styles.css">
     <title>Kraken movies - Filmes e Séries</title>
     <link rel="shortcut icon" href="src/image/favicon.png" type="src/image/x-icon">
 </head>
 <body>
     <div class="container">
         <header class="header"> 
-            <div class="logo"><img src="src/image/kraken_movies_logoS.png" alt="logo"></div>
             <div class="header-content">
-                <h1 class="logo">Kraken Movies</h1>
-                <p class="subtitle">Encontre e assista filmes e séries em alta qualidade</p>
+                <h1 class="header-title">Kraken Movies</h1>
+                <p class="header-subtitle">Filmes e séries em alta qualidade</p>
+            </div>
+            <div class="header-logo">
+                <img src="src/image/kraken_movies_logoS.png" alt="logo">
             </div>
         </header>
        
@@ -85,13 +88,14 @@
             <div class="modal-body">
                 <img id="modalPoster" src="" alt="Poster" class="modal-poster">
                 <div class="modal-info">
+                    <div id="modalExtraInfo" class="modal-extra-info"></div>
                     <h2 id="modalTitle"></h2>
                     <p id="modalYear" class="modal-year"></p>
                     <p id="modalDescription" class="modal-description"></p>
                     <div class="modal-links">
                         <a id="tmdbLink" href="#" target="_blank" class="link-btn tmdb-btn">Ver no TMDB</a>
                         <a id="imdbLink" href="#" target="_blank" class="link-btn imdb-btn">Ver no IMDb</a>
-                        <a id="watchLink" href="#" target="_blank" class="link-btn watch-btn">Watch</a>
+                        <a id="watchLink" href="construction.html" class="link-btn watch-btn">Watch</a>
                     </div>
                 </div>
             </div>
@@ -103,5 +107,3 @@
     <script src="src/script.js"></script>
 </body>
 </html>
-
-

@@ -330,6 +330,7 @@ footer {
     padding: 20px;
     color: #888;
     font-size: 0.9rem;
+    border: #aaa solid 1px;
 }
 
 .active-tab {
@@ -447,5 +448,399 @@ footer {
     }
     .modal-info h2 {
         font-size: 1.3rem;
+    }
+}
+.temporadas-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #404040;
+}
+
+.temporadas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.temporada-card {
+    background: #2f2f2f;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #404040;
+}
+
+.temporada-card:hover {
+    background: #e50914;
+    transform: translateY(-2px);
+}
+
+.temporada-numero {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.temporada-info {
+    display: block;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 5px 0;
+}
+
+.temporada-ano {
+    display: block;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.episodios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.episodio-card {
+    background: #2f2f2f;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #404040;
+}
+
+.episodio-card:hover {
+    background: #e50914;
+    transform: translateY(-2px);
+}
+
+.episodio-numero {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.episodio-titulo {
+    display: block;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 5px 0;
+}
+
+.assistir-btn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.voltar-btn {
+    background: #404040;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.pagination-btn {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #c40812;
+    transform: translateY(-2px);
+}
+
+.pagination-btn:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.page-info {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+
+.content-section {
+    display: block;
+}
+
+
+.assistir-btn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.assistir-btn:hover {
+    background: #c40812;
+    transform: translateY(-1px);
+}
+
+.voltar-btn {
+    background: #404040;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: var(--transition);
+}
+
+.voltar-btn:hover {
+    background: #505050;
+}
+.serie-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.serie-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.serie-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.serie-year {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.serie-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.serie-poster {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.serie-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.serie-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.serie-details {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.serie-details p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.serie-temporadas {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.serie-temporadas h3 {
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+.temporadas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.temporada-card {
+    background: #2f2f2f;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.temporada-card:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+.temporada-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.temporada-numero {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.temporada-episodios {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.temporada-ano {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.episodios-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.episodios-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.episodios-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.episodios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.episodio-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.episodio-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.episodio-numero {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.assistir-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.assistir-btn:hover {
+    background: #c40812;
+    transform: translateY(-1px);
+}
+
+.serie-actions {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.voltar-btn {
+    background: #404040;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.voltar-btn:hover {
+    background: #505050;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .serie-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .serie-poster {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .temporadas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .episodios-grid {
+        grid-template-columns: 1fr;
     }
 }

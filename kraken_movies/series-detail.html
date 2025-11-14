@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="src/series-detail-styles.css">
+    <title>Detalhes da Série - Kraken Movies</title>
+    <link rel="shortcut icon" href="src/image/favicon.png" type="src/image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header class="header"> 
+            <div class="logo"><img src="src/image/kraken_movies_logoS.png" alt="logo"></div>
+            <div class="header-content">
+                <h1 class="logo">Kraken Movies</h1>
+                <p class="subtitle">Encontre e assista filmes e séries em alta qualidade</p>
+            </div>
+        </header>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading content...</p>
+        </div>
+        <div id="error" class="error hidden"></div>
+
+        <section class="content-section">
+            <button class="back-btn" onclick="window.history.back()">← Voltar</button>
+            
+            <div id="seriesDetail" class="series-detail-container">
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Kraken Movies. All rights reserved.</p>
+    </footer>
+    
+    <script src="src/series-detail.js"></script>
+</body>
+</html>

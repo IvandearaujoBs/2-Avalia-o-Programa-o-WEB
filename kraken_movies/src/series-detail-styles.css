@@ -1,0 +1,276 @@
+.back-btn {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #e55a2b;
+}
+
+.series-detail-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.series-detail-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.series-detail-poster {
+    flex-shrink: 0;
+}
+
+.series-poster-img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+}
+
+.series-detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: white;
+}
+
+.series-detail-title {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: #ff6b35;
+}
+
+.series-detail-year {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    margin: 0 0 0.5rem 0;
+}
+
+.series-detail-rating {
+    font-size: 1.2rem;
+    color: #ffd700;
+    margin: 0.5rem 0;
+}
+
+.series-detail-genres {
+    font-size: 1rem;
+    color: #d0d0d0;
+    margin: 0.5rem 0;
+}
+
+.series-detail-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    margin: 1rem 0;
+}
+
+.series-detail-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.link-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.watch-btn {
+    background-color: #ff6b35;
+    color: white;
+}
+
+.watch-btn:hover {
+    background-color: #e55a2b;
+}
+
+.imdb-btn {
+    background-color: #f5c518;
+    color: #000;
+}
+
+.imdb-btn:hover {
+    background-color: #e0b000;
+}
+
+.tmdb-btn {
+    background-color: #00d4ff;
+    color: #000;
+}
+
+.tmdb-btn:hover {
+    background-color: #00b8d4;
+}
+
+.series-seasons-container {
+    margin-top: 3rem;
+}
+
+.series-seasons-container h2 {
+    font-size: 2rem;
+    color: #ff6b35;
+    margin-bottom: 1.5rem;
+}
+
+.series-seasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.season-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.season-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.season-title {
+    font-size: 1.5rem;
+    color: #ff6b35;
+    margin: 0;
+}
+
+.season-episodes {
+    background-color: #ff6b35;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.season-year {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
+.season-episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.episode-card {
+    background-color: #0f3460;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.episode-card:hover {
+    background-color: #16213e;
+    border-color: #ff6b35;
+    transform: translateY(-5px);
+}
+
+.episode-number {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+}
+
+.episode-title {
+    display: block;
+    font-size: 0.9rem;
+    color: #d0d0d0;
+    margin-bottom: 0.75rem;
+}
+
+.watch-episode-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.watch-episode-btn:hover {
+    background-color: #e55a2b;
+}
+
+
+@media (max-width: 768px) {
+    .series-detail-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .series-detail-title {
+        font-size: 2rem;
+    }
+
+    .series-detail-links {
+        justify-content: center;
+    }
+
+    .season-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .season-episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .series-detail-header {
+        padding: 1rem;
+    }
+
+    .series-poster-img {
+        width: 150px;
+    }
+
+    .series-detail-title {
+        font-size: 1.5rem;
+    }
+
+    .season-episodes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
