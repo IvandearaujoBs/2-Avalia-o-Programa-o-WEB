@@ -182,6 +182,30 @@ body {
     gap: 20px;
 }
 
+.category-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+.category-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.category-row::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+}
+
+.category-movie-card {
+    min-width: 180px;
+    max-width: 180px;
+    flex: 0 0 auto;
+}
+
+
 .category-movie-card {
     background-color: var(--card-bg);
     border-radius: 10px;
@@ -844,4 +868,51 @@ footer {
     .episodios-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-row {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.9);
+}
+
+.carousel-btn.left {
+    left: -10px;
+}
+
+.carousel-btn.right {
+    right: -10px;
+}
+
+.category-movie-card {
+    min-width: 180px;
+    max-width: 180px;
+    flex: 0 0 auto;
 }

@@ -207,43 +207,37 @@ function getCategoryMovies(category, type) {
     }
 }
 
-function createCategorySection(title, id, type, isAllSection = false) {
+function createCategorySection(title, id, type) {
     const movies = getCategoryMovies(id, type);
     if (movies.length === 0) return '';
-    
-    const visible = movies.slice(0,6);
-    const hidden = movies.slice(6);
-    
-    let html = `<div class="category-section"><h3 class="category-title">${title}</h3><div class="category-grid">`;
-    
-    if (isAllSection) {
-        movies.forEach(m => html += createCard(m));
-        html += `</div></div>`;
-    } else {
-        visible.forEach(m => html += createCard(m));
-        html += `</div>`;
-        
-        if (hidden.length > 0) {
-            html += `<div id="hidden-${id}-${type}" class="hidden-content" style="display:none"><div class="category-grid">`;
-            hidden.forEach(m => html += createCard(m));
-            html += `</div></div><button class="show-more-btn" onclick="toggleCategory('${id}-${type}',${hidden.length})">Mostrar Mais (${hidden.length})</button>`;
-        }
-        html += `</div>`;
-    }
+
+    const sliderId = `slider-${id}-${type}`;
+
+    let html = `
+        <div class="category-section">
+            <h3 class="category-title">${title}</h3>
+
+            <div class="carousel-container">
+                <button class="carousel-btn left" onclick="scrollCarousel('${sliderId}', -1)">&#10094;</button>
+
+                <div id="${sliderId}" class="category-row carousel-row">
+    `;
+
+    movies.forEach(m => {
+        html += createCard(m);
+    });
+
+    html += `
+                </div>
+
+                <button class="carousel-btn right" onclick="scrollCarousel('${sliderId}', 1)">&#10095;</button>
+            </div>
+        </div>
+    `;
+
     return html;
 }
 
-function toggleCategory(id, count) {
-    const block = document.getElementById(`hidden-${id}`);
-    const btn = event.target;
-    if (block.style.display === 'none') {
-        block.style.display = 'block';
-        btn.textContent = 'Mostrar Menos';
-    } else {
-        block.style.display = 'none';
-        btn.textContent = `Mostrar Mais (${count})`;
-    }
-}
 
 function filterContent(filterType) {
     appState.currentFilter = filterType;
@@ -413,6 +407,20 @@ function renderAll() {
     filterContent('all');
     setupPagination(); 
 }
+
+function scrollCarousel(id, direction) {
+    const row = document.getElementById(id);
+    if (!row) return;
+
+    const cardWidth = 200; 
+    const scrollAmount = cardWidth * 3;
+
+    row.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', ()=>{
     carregarFilmesDosIds();
