@@ -30,7 +30,7 @@ const temporadasData = {
 };
 
 function assistirEpisodio(imdbId, temporada, episodio) {
-    const url = `https://playerflixapi.com/serie/${imdbId}/t${temporada}e${episodio}`;
+    const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;
     window.open(url, '_blank');
 }
 

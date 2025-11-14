@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1763117500224,
@@ -20,6 +20,18 @@
                 {
                     "date": 1763121915393,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,9 +128,8 @@\n     seriesDetail.innerHTML = html;\n     console.log('Página renderizada com sucesso');\n }\n \n-// Executar quando o DOM estiver pronto\n if (document.readyState === 'loading') {\n     document.addEventListener('DOMContentLoaded', renderSeriesDetail);\n } else {\n     renderSeriesDetail();\n"
+                },
+                {
+                    "date": 1763123205723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ]\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n-    const url = `https://playerflixapi.com/serie/${imdbId}/t${temporada}e${episodio}`;\n+    const url = `constructio${imdbId}/t${temporada}e${episodio}`;\n     window.open(url, '_blank');\n }\n \n function renderSeriesDetail() {\n"
+                },
+                {
+                    "date": 1763123276755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ]\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n-    const url = `constructio${imdbId}/t${temporada}e${episodio}`;\n+    const url = `construction.html?${imdbId}/t${temporada}e${episodio}`;\n     window.open(url, '_blank');\n }\n \n function renderSeriesDetail() {\n"
+                },
+                {
+                    "date": 1763123286652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ]\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n-    const url = `construction.html?${imdbId}/t${temporada}e${episodio}`;\n+    const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;\n     window.open(url, '_blank');\n }\n \n function renderSeriesDetail() {\n"
                 }
             ],
             "date": 1763117500224,
