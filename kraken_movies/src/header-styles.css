@@ -19,7 +19,7 @@ header {
 }
 
 .header-logo img {
-    max-width: 80px;
+    max-width: 300px;
     height: auto;
     object-fit: contain;
 }

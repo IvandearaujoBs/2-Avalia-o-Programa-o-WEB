@@ -5,6 +5,18 @@ const appState = {
     currentFilter: 'all'
 };
 
+const GENRES_LIST = [
+    'Action',
+    'Adventure',
+    'Sci-Fi',
+    'Biography',
+    'Drama',
+    'History',
+    'Crime',
+    'Animation'
+];
+
+
 const imdbIds = [
     'tt31227572',
     'tt11378946',
@@ -140,6 +152,44 @@ function createCard(m) {
     </div>`;
 }
 
+function getMoviesByGenre(genre) {
+    return appState.allMovies.filter(m => 
+        m.genres && m.genres.toLowerCase().includes(genre.toLowerCase())
+    );
+}
+
+function createGenreSection(genre) {
+    const movies = getMoviesByGenre(genre);
+    if (movies.length === 0) return '';
+
+    let html = `<div class="category-section">
+        <h3 class="category-title">${genre}</h3>
+        <div class="category-grid">`;
+
+    movies.forEach(m => {
+        html += createCard(m);
+    });
+
+    html += `</div></div>`;
+    return html;
+}
+
+function renderGenres() {
+    const container = document.getElementById('genreCategories');
+    if (!container) return;
+
+    const sections = GENRES_LIST
+        .map(genre => createGenreSection(genre))
+        .filter(html => html !== '');
+
+    if (sections.length === 0) {
+        container.innerHTML = '<p>Nenhum conteúdo encontrado para esses gêneros.</p>';
+    } else {
+        container.innerHTML = sections.join('');
+    }
+}
+
+
 function getCategoryMovies(category, type) {
     const movies = appState.allMovies.filter(m => type === 'all' || m.type === type);
     const shuffled = [...movies].sort(() => Math.random() - 0.5);
@@ -210,6 +260,10 @@ function filterContent(filterType) {
     if (filterType === 'all') {
         document.getElementById('moviesTab').classList.add('active-tab');
         document.getElementById('moviesCategories').innerHTML = createAllSection();
+    } else if (filterType === 'genre') {
+        // nova aba GENRE
+        document.getElementById('genreTab').classList.add('active-tab');
+        renderGenres();
     } else {
         document.getElementById(`${filterType}Tab`).classList.add('active-tab');
         renderCategories(filterType);
