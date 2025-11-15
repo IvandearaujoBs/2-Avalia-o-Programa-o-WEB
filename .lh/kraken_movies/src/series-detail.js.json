@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 26,
             "patches": [
                 {
                     "date": 1763117500224,
@@ -32,6 +32,86 @@
                 {
                     "date": 1763123286652,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ]\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n-    const url = `construction.html?${imdbId}/t${temporada}e${episodio}`;\n+    const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;\n     window.open(url, '_blank');\n }\n \n function renderSeriesDetail() {\n"
+                },
+                {
+                    "date": 1763157576893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         { numero: 7, episodios: 24, ano: 2000 },\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n-    ]\n+    ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n     const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;\n"
+                },
+                {
+                    "date": 1763157597282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,20 @@\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n+    'tt0108778': [ // Friends\n+        { numero: 1, episodios: 24, ano: 1994 },\n+        { numero: 2, episodios: 24, ano: 1995 },\n+        { numero: 3, episodios: 25, ano: 1996 },\n+        { numero: 4, episodios: 24, ano: 1997 },\n+        { numero: 5, episodios: 24, ano: 1998 },\n+        { numero: 6, episodios: 25, ano: 1999 },\n+        { numero: 7, episodios: 24, ano: 2000 },\n+        { numero: 8, episodios: 24, ano: 2001 },\n+        { numero: 9, episodios: 24, ano: 2002 },\n+        { numero: 10, episodios: 18, ano: 2003 }\n+    ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n     const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;\n"
+                },
+                {
+                    "date": 1763157608059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n-    'tt0108778': [ // Friends\n+    'tt1190634': [ // Friends\n         { numero: 1, episodios: 24, ano: 1994 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n"
+                },
+                {
+                    "date": 1763157630085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,14 +31,9 @@\n         { numero: 1, episodios: 24, ano: 1994 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n-        { numero: 5, episodios: 24, ano: 1998 },\n-        { numero: 6, episodios: 25, ano: 1999 },\n-        { numero: 7, episodios: 24, ano: 2000 },\n-        { numero: 8, episodios: 24, ano: 2001 },\n-        { numero: 9, episodios: 24, ano: 2002 },\n-        { numero: 10, episodios: 18, ano: 2003 }\n+\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763157642375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n-    'tt1190634': [ // Friends\n+    'tt1190634': [ // The \n         { numero: 1, episodios: 24, ano: 1994 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n"
+                },
+                {
+                    "date": 1763157656648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,14 +26,13 @@\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n-    'tt1190634': [ // The \n+    'tt1190634': [ // The Boys\n         { numero: 1, episodios: 24, ano: 1994 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n-\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763157905146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n-        { numero: 1, episodios: 24, ano: 1994 },\n+        { numero: 1, episodios: 2, ano: 1994 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n"
+                },
+                {
+                    "date": 1763157914299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n-        { numero: 1, episodios: 2, ano: 1994 },\n+        { numero: 1, episodios: 1, ano: 20 },\n         { numero: 2, episodios: 24, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n"
+                },
+                {
+                    "date": 1763157924070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n-        { numero: 1, episodios: 1, ano: 20 },\n-        { numero: 2, episodios: 24, ano: 1995 },\n+        { numero: 1, episodios: 1, ano: 2019 },\n+        { numero: 2, episodios: , ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n };\n"
+                },
+                {
+                    "date": 1763158044616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n-        { numero: 1, episodios: 1, ano: 2019 },\n+        { numero: 1, episodios: , ano: 2019 },\n         { numero: 2, episodios: , ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n"
+                },
+                {
+                    "date": 1763158052883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n-        { numero: 1, episodios: , ano: 2019 },\n-        { numero: 2, episodios: , ano: 1995 },\n+        { numero: 1, episodios: 8, ano: 2019 },\n+        { numero: 2, episodios: 8, ano: 1995 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n };\n"
+                },
+                {
+                    "date": 1763158060410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n     'tt1190634': [ // The Boys\n         { numero: 1, episodios: 8, ano: 2019 },\n-        { numero: 2, episodios: 8, ano: 1995 },\n+        { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 25, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n };\n"
+                },
+                {
+                    "date": 1763158098739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ],\n     'tt1190634': [ // The Boys\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n-        { numero: 3, episodios: 25, ano: 1996 },\n+        { numero: 3, episodios: 8, ano: 1996 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n };\n \n"
+                },
+                {
+                    "date": 1763158104012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     ],\n     'tt1190634': [ // The Boys\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n-        { numero: 3, episodios: 8, ano: 1996 },\n+        { numero: 3, episodios: 8, ano: 2022 },\n         { numero: 4, episodios: 24, ano: 1997 },\n     ],\n };\n \n"
+                },
+                {
+                    "date": 1763158128027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     'tt1190634': [ // The Boys\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 8, ano: 2022 },\n-        { numero: 4, episodios: 24, ano: 1997 },\n+        { numero: 4, episodios: 8, ano:  },\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763158134133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     'tt1190634': [ // The Boys\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 8, ano: 2022 },\n-        { numero: 4, episodios: 8, ano:  },\n+        { numero: 4, episodios: 8, ano: 2024 },\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763158140272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,10 @@\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 8, ano: 2022 },\n         { numero: 4, episodios: 8, ano: 2024 },\n+        { numero: 4, episodios: 8, ano: 2024 },\n+        { numero: 4, episodios: 8, ano: 2024 },\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763158148155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,9 @@\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 8, ano: 2022 },\n         { numero: 4, episodios: 8, ano: 2024 },\n-        { numero: 4, episodios: 8, ano: 2024 },\n-        { numero: 4, episodios: 8, ano: 2024 },\n+        { numero: 5, episodios: 8, ano: 2024 },\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763158153456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n         { numero: 1, episodios: 8, ano: 2019 },\n         { numero: 2, episodios: 8, ano: 2020 },\n         { numero: 3, episodios: 8, ano: 2022 },\n         { numero: 4, episodios: 8, ano: 2024 },\n-        { numero: 5, episodios: 8, ano: 2024 },\n+        { numero: 5, episodios: 8, ano: 2025 },\n     ],\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n"
+                },
+                {
+                    "date": 1763159112468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,9 @@\n         { numero: 8, episodios: 24, ano: 2001 },\n         { numero: 9, episodios: 24, ano: 2002 },\n         { numero: 10, episodios: 18, ano: 2003 }\n     ],\n-    'tt1190634': [ // The Boys\n-        { numero: 1, episodios: 8, ano: 2019 },\n-        { numero: 2, episodios: 8, ano: 2020 },\n-        { numero: 3, episodios: 8, ano: 2022 },\n-        { numero: 4, episodios: 8, ano: 2024 },\n-        { numero: 5, episodios: 8, ano: 2025 },\n-    ],\n+\n };\n \n function assistirEpisodio(imdbId, temporada, episodio) {\n     const url = `construction.html?serie=${imdbId}/t${temporada}e${episodio}`;\n"
                 }
             ],
             "date": 1763117500224,

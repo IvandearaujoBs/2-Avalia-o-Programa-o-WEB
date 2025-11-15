@@ -27,8 +27,20 @@ const imdbIds = [
     'tt0110357', // The Lion King
     'tt4574334', // Stranger Things
     'tt0108778', // Friends
-    'tt0076759',  // Star Wars
+    'tt5311514', // toystory
     'tt1312221', 
+    'tt0169547', //you
+    'tt26581740', // A Hora do mal
+    'tt1262426', // Wicked
+    'tt5626028', // Boku no hero
+    'tt1190634', // The boys
+    'tt7286456', // Coringa
+    'tt12637874', // Fallout
+    'tt0120737', // senhor dos aneis
+    'tt0245429', // chihiro
+    'tt0088763', // de volta para o futuro
+    'tt0076759', // Star Wars: Episódio IV - Uma Nova Esperança
+    'tt0095327', // Túmulo dos Vaga-lumes
 
 ];
 
@@ -50,7 +62,21 @@ const temporadasData = {
         { numero: 5, episodios: 24, ano: 1998 },{ numero: 6, episodios: 25, ano: 1999 },
         { numero: 7, episodios: 24, ano: 2000 },{ numero: 8, episodios: 24, ano: 2001 },
         { numero: 9, episodios: 24, ano: 2002 },{ numero: 10, episodios: 18, ano: 2003 }
-    ]
+    ],
+        'tt1190634': [ // The Boys
+        { numero: 1, episodios: 8, ano: 2019 },
+        { numero: 2, episodios: 8, ano: 2020 },
+        { numero: 3, episodios: 8, ano: 2022 },
+        { numero: 4, episodios: 8, ano: 2024 },
+        { numero: 5, episodios: 8, ano: 2025 },
+    ],
+        'tt12637874': [ // The Boys
+        { numero: 1, episodios: 8, ano: 2019 },
+        { numero: 2, episodios: 8, ano: 2020 },
+        { numero: 3, episodios: 8, ano: 2022 },
+        { numero: 4, episodios: 8, ano: 2024 },
+        { numero: 5, episodios: 8, ano: 2025 },
+    ],
 };
 
 async function buscarFilmeOMDB(imdbId) {
@@ -378,7 +404,7 @@ function setupPagination() {
         
         document.getElementById('moviesCategories').innerHTML = 
             `<div class="category-section">
-                <h3 class="category-title">🎬 Todos os Conteúdos (Página ${currentPage})</h3>
+                <h3 class="category-title">🎬 Todos os Conteúdos</h3>
                 <div class="category-grid">
                     ${paginatedMovies.map(m => createCard(m)).join('')}
                 </div>

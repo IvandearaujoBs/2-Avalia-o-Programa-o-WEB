@@ -26,7 +26,8 @@ const temporadasData = {
         { numero: 8, episodios: 24, ano: 2001 },
         { numero: 9, episodios: 24, ano: 2002 },
         { numero: 10, episodios: 18, ano: 2003 }
-    ]
+    ],
+
 };
 
 function assistirEpisodio(imdbId, temporada, episodio) {
