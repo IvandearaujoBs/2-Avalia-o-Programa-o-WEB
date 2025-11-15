@@ -6,42 +6,16 @@ const appState = {
 };
 
 const GENRES_LIST = [
-    'Action',
-    'Adventure',
-    'Sci-Fi',
-    'Biography',
-    'Drama',
-    'History',
-    'Crime',
-    'Animation'
+    'Action','Adventure','Sci-Fi','Biography','Drama','History','Crime','Animation'
 ];
 
-
 const imdbIds = [
-    'tt31227572',
-    'tt11378946',
-    'tt0068646', // teste
-    'tt0468569', // The Dark Knight
-    'tt1375666', // Inception
-    'tt0944947', // Game of Thrones
-    'tt0110357', // The Lion King
-    'tt4574334', // Stranger Things
-    'tt0108778', // Friends
-    'tt5311514', // toystory
-    'tt1312221', 
-    'tt0169547', //you
-    'tt26581740', // A Hora do mal
-    'tt1262426', // Wicked
-    'tt5626028', // Boku no hero
-    'tt1190634', // The boys
-    'tt7286456', // Coringa
-    'tt12637874', // Fallout
-    'tt0120737', // senhor dos aneis
-    'tt0245429', // chihiro
-    'tt0088763', // de volta para o futuro
-    'tt0076759', // Star Wars: Episódio IV - Uma Nova Esperança
-    'tt0095327', // Túmulo dos Vaga-lumes
-
+    'tt31227572','tt11378946','tt0068646','tt0468569','tt1375666', 'tt0944947','tt0110357', 'tt4574334', 'tt0108778', 
+    'tt5311514', 'tt1312221', 'tt0169547', 'tt26581740', 'tt1262426', 'tt5626028', 'tt1190634', 'tt7286456', 'tt12637874', 
+    'tt0120737', 'tt0245429', 'tt0088763', 'tt0076759', 'tt0095327', 'tt2948356', 'tt1355642', 'tt0096697', 'in0000026', 
+    'tt36463894', 'tt9362722', 'tt29623480', 'tt30472557', 'tt26443597', 'tt30017619', 'tt0498396', 'tt0107688', 'tt0382932',
+    'tt0126029', 'tt0121164', 'tt32376165', 'tt10676052', 'tt9362736', 'tt0111161', 'tt0050083', 'tt0108052'
+    
 ];
 
 const temporadasData = {
@@ -225,7 +199,7 @@ function getCategoryMovies(category, type) {
         .filter(m => Number(m.year) >= 2020)
         .sort((a, b) => b.year - a.year);
         case 'popular': return shuffled.sort((a,b)=>b.rating-a.rating);
-        case 'classics': return shuffled.filter(m=>m.year<2000);
+        case 'classics': return shuffled.filter(m=>m.year<2010);
         case 'suggestions': return shuffled;
         case 'blockbusters': return shuffled.sort((a,b)=>b.rating-a.rating).slice(0,12);
         case 'collection': return shuffled.slice(0,12);
