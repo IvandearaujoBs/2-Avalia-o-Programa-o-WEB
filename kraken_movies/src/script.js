@@ -12,59 +12,81 @@ const GENRES_LIST = [
 const imdbIds = [
     'tt31227572','tt11378946','tt0068646','tt0468569','tt1375666', 'tt0944947','tt0110357', 'tt4574334', 'tt0108778', 
     'tt5311514', 'tt1312221', 'tt0169547', 'tt26581740', 'tt1262426', 'tt5626028', 'tt1190634', 'tt7286456', 'tt12637874', 
-    'tt0120737', 'tt0245429', 'tt0088763', 'tt0076759', 'tt0095327', 'tt2948356', 'tt1355642', 'tt0096697', 'in0000026', 
+    'tt0120737', 'tt0245429', 'tt0088763', 'tt0076759', 'tt0095327', 'tt2948356', 'tt1355642', 'tt0096697',  
     'tt36463894', 'tt9362722', 'tt29623480', 'tt30472557', 'tt26443597', 'tt30017619', 'tt0498396', 'tt0107688', 'tt0382932',
     'tt0126029', 'tt0121164', 'tt32376165', 'tt10676052', 'tt9362736', 'tt0111161', 'tt0050083', 'tt0108052'
-    
 ];
 
 const temporadasData = {
-    'tt0944947': [ // Game of Thrones
+    'tt0944947': [
         { numero: 1, episodios: 10, ano: 2011 },{ numero: 2, episodios: 10, ano: 2012 },
         { numero: 3, episodios: 10, ano: 2013 },{ numero: 4, episodios: 10, ano: 2014 },
         { numero: 5, episodios: 10, ano: 2015 },{ numero: 6, episodios: 10, ano: 2016 },
         { numero: 7, episodios: 7, ano: 2017 },{ numero: 8, episodios: 6, ano: 2019 }
     ],
-    'tt4574334': [ // Stranger Things
+    'tt4574334': [
         { numero: 1, episodios: 8, ano: 2016 },{ numero: 2, episodios: 9, ano: 2017 },
         { numero: 3, episodios: 8, ano: 2019 },{ numero: 4, episodios: 9, ano: 2022 }
     ],
-    'tt0108778': [ // Friends
-        
-        { numero: 2, episodios: 24, ano: 1995 },{ numero: 1, episodios: 24, ano: 1994 },
-        { numero: 4, episodios: 24, ano: 1997 },{ numero: 3, episodios: 25, ano: 1996 },
+    'tt0108778': [
+        { numero: 1, episodios: 24, ano: 1994 },{ numero: 2, episodios: 24, ano: 1995 },
+        { numero: 3, episodios: 25, ano: 1996 },{ numero: 4, episodios: 24, ano: 1997 },
         { numero: 5, episodios: 24, ano: 1998 },{ numero: 6, episodios: 25, ano: 1999 },
         { numero: 7, episodios: 24, ano: 2000 },{ numero: 8, episodios: 24, ano: 2001 },
         { numero: 9, episodios: 24, ano: 2002 },{ numero: 10, episodios: 18, ano: 2003 }
     ],
-        'tt1190634': [ // The Boys
+        'tt1190634': [
         { numero: 1, episodios: 8, ano: 2019 },
         { numero: 2, episodios: 8, ano: 2020 },
         { numero: 3, episodios: 8, ano: 2022 },
         { numero: 4, episodios: 8, ano: 2024 },
-        { numero: 5, episodios: 8, ano: 2025 },
     ],
-        'tt12637874': [ // The Boys
+        'tt12637874': [
         { numero: 1, episodios: 8, ano: 2019 },
         { numero: 2, episodios: 8, ano: 2020 },
         { numero: 3, episodios: 8, ano: 2022 },
         { numero: 4, episodios: 8, ano: 2024 },
-        { numero: 5, episodios: 8, ano: 2025 },
-    ],
+    ]
 };
 
 async function buscarFilmeOMDB(imdbId) {
     try {
-        const resposta = await fetch(`https://www.omdbapi.com/?i=${imdbId}&apikey=${OMDB_API_KEY}`);
-        const dados = await resposta.json();
-        
+        const url = `https://www.omdbapi.com/?i=${encodeURIComponent(imdbId)}&apikey=${encodeURIComponent(OMDB_API_KEY)}`;
+        const resposta = await fetch(url);
+
+        if (!resposta.ok) {
+            const txt = await resposta.text().catch(() => '(sem corpo)');
+            throw new Error(`HTTP ${resposta.status} - ${txt}`);
+        }
+
+        const contentType = (resposta.headers.get('content-type') || '').toLowerCase();
+        const bodyText = await resposta.text().catch(() => '');
+
+        if (!contentType.includes('application/json')) {
+            console.warn('Resposta OMDB não é JSON para imdbId=', imdbId, ' — corpo:', bodyText);
+            throw new Error('Resposta OMDB inválida (não JSON)');
+        }
+
+        let dados;
+        try {
+            dados = JSON.parse(bodyText);
+        } catch (parseErr) {
+            console.error('Erro ao parsear JSON da resposta OMDB para imdbId=', imdbId, parseErr, 'corpo:', bodyText);
+            const errorMatch = bodyText.match(/"Response"\s*:\s*"False"[\s\S]*?"Error"\s*:\s*"(.*)"/);
+            if (errorMatch) {
+                dados = { Response: 'False', Error: errorMatch[1] };
+            } else {
+                throw parseErr;
+            }
+        }
+
         if (dados.Response === 'False') {
-            throw new Error(dados.Error);
+            throw new Error(dados.Error || 'OMDB retornou Response=false');
         }
         
         let temporadas = [];
         if (dados.Type === 'series' && temporadasData[imdbId]) {
-            temporadas = temporadasData[imdbId];
+            temporadas = temporadasData[imdbId].sort((a, b) => a.numero - b.numero); 
         }
         
         return {
@@ -136,7 +158,7 @@ function openModal(id) {
     if (m.imdbId) {
         watchLink.href = 'construction.html';
         imdbLink.href = `https://www.imdb.com/title/${m.imdbId}`;
-        tmdbLink.href = `https://www.imdb.com/title/${m.imdbId}`;
+        tmdbLink.href = `https://www.themoviedb.org/title/${m.tmdbId}`; 
     }
     
     document.getElementById('movieModal').classList.remove('hidden');
@@ -189,7 +211,6 @@ function renderGenres() {
     }
 }
 
-
 function getCategoryMovies(category, type) {
     const movies = appState.allMovies.filter(m => type === 'all' || m.type === type);
     const shuffled = [...movies].sort(() => Math.random() - 0.5);
@@ -241,26 +262,40 @@ function createCategorySection(title, id, type) {
 
 function filterContent(filterType) {
     appState.currentFilter = filterType;
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-filter="${filterType}"]`).classList.add('active');
-    
-    document.querySelectorAll('.tab-content').forEach(tab => {
+
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector(`[data-filter="${filterType}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+    else console.warn('Botão de filtro não encontrado para:', filterType);
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
         tab.classList.remove('active-tab');
+        tab.style.display = 'none';
     });
-    
-    if (filterType === 'all') {
-        document.getElementById('moviesTab').classList.add('active-tab');
-        document.getElementById('moviesCategories').innerHTML = createAllSection();
-    } else if (filterType === 'genre') {
-        // nova aba GENRE
-        document.getElementById('genreTab').classList.add('active-tab');
-        renderGenres();
+
+    let tabId = (filterType === 'all') ? 'moviesTab' : (filterType === 'genre' ? 'genreTab' : `${filterType}Tab`);
+    const tabEl = document.getElementById(tabId);
+    if (tabEl) {
+        tabEl.classList.add('active-tab');
+        tabEl.style.display = 'block';
+        const contentSection = document.querySelector('.content-section');
+        if (contentSection) contentSection.classList.remove('hidden');
+        try { tabEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+        console.log('filterContent activated tab:', tabId, 'classes:', tabEl.className);
     } else {
-        document.getElementById(`${filterType}Tab`).classList.add('active-tab');
+        console.warn('Elemento de tab não encontrado:', tabId);
+    }
+
+    if (filterType === 'all') {
+        currentPage = 1;
+        renderPaginatedMovies();
+        updatePagination();
+    } else if (filterType === 'genre') {
+        renderGenres();
+        const pagination = document.getElementById('pagination'); if (pagination) pagination.classList.add('hidden');
+    } else {
         renderCategories(filterType);
+        const pagination = document.getElementById('pagination'); if (pagination) pagination.classList.add('hidden');
     }
 }
 
@@ -318,6 +353,9 @@ function setupSearch() {
             document.getElementById('noResults').classList.add('hidden');
             document.querySelector('.content-section').classList.remove('hidden');
             appState.currentFilter = 'all';
+            
+            document.getElementById('moviesTab').classList.add('active-tab'); 
+            
             document.getElementById('moviesCategories').innerHTML = createSearchResults(filteredMovies);
         }
     }
@@ -346,65 +384,81 @@ function createSearchResults(movies) {
     return html;
 }
 
-function setupPagination() {
+let currentPage = 1; 
+const moviesPerPage = 12;
+
+function updatePagination() {
+    const totalMovies = appState.allMovies.length;
+    const totalPages = Math.ceil(totalMovies / moviesPerPage);
+    
+    const paginationElement = document.getElementById('pagination');
+    if (!paginationElement) return;
+
+    if (appState.currentFilter !== 'all' || totalMovies <= moviesPerPage) { 
+        paginationElement.classList.add('hidden');
+        return;
+    }
+    
+    paginationElement.classList.remove('hidden');
+    
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const pageInfo = document.getElementById('pageInfo');
     
-    let currentPage = 1;
-    const moviesPerPage = 12;
+    pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
     
-    function updatePagination() {
-        const totalMovies = appState.allMovies.length;
-        const totalPages = Math.ceil(totalMovies / moviesPerPage);
-        
-        pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = currentPage === totalPages;
-        
-        if (totalMovies <= moviesPerPage) {
-            document.getElementById('pagination').classList.add('hidden');
-        } else {
-            document.getElementById('pagination').classList.remove('hidden');
-        }
-        
-        renderPaginatedMovies();
-    }
+    renderPaginatedMovies();
+}
+
+function renderPaginatedMovies() {
+    if (appState.currentFilter !== 'all') return; 
     
-    function renderPaginatedMovies() {
-        const startIndex = (currentPage - 1) * moviesPerPage;
-        const endIndex = startIndex + moviesPerPage;
-        const paginatedMovies = appState.allMovies.slice(startIndex, endIndex);
-        
-        document.getElementById('moviesCategories').innerHTML = 
-            `<div class="category-section">
-                <h3 class="category-title">🎬 Todos os Conteúdos</h3>
-                <div class="category-grid">
-                    ${paginatedMovies.map(m => createCard(m)).join('')}
-                </div>
-            </div>`;
-    }
+    const startIndex = (currentPage - 1) * moviesPerPage;
+    const endIndex = startIndex + moviesPerPage;
+    const paginatedMovies = appState.allMovies.slice(startIndex, endIndex);
     
-    prevBtn.addEventListener('click', () => {
+    document.getElementById('moviesCategories').innerHTML = 
+        `<div class="category-section">
+            <h3 class="category-title">🎬 Todos os Conteúdos</h3>
+            <div class="category-grid">
+                ${paginatedMovies.map(m => createCard(m)).join('')}
+            </div>
+        </div>`;
+}
+
+function setupPagination() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    function handlePrevClick() {
         if (currentPage > 1) {
             currentPage--;
             updatePagination();
         }
-    });
+    }
     
-    nextBtn.addEventListener('click', () => {
+    function handleNextClick() {
         const totalPages = Math.ceil(appState.allMovies.length / moviesPerPage);
         if (currentPage < totalPages) {
             currentPage++;
             updatePagination();
         }
-    });
+    }
     
-    updatePagination();
+    if (prevBtn) {
+        prevBtn.removeEventListener('click', handlePrevClick);
+        prevBtn.addEventListener('click', handlePrevClick);
+    }
+    if (nextBtn) {
+        nextBtn.removeEventListener('click', handleNextClick);
+        nextBtn.addEventListener('click', handleNextClick);
+    }
 }
 
 function renderAll() {
-    filterContent('all');
+    filterContent('all'); 
     setupPagination(); 
 }
 
@@ -425,12 +479,14 @@ function scrollCarousel(id, direction) {
 document.addEventListener('DOMContentLoaded', ()=>{
     carregarFilmesDosIds();
     
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filter = btn.getAttribute('data-filter');
-            filterContent(filter);
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const filter = btn.getAttribute('data-filter');
+                console.log('Filtro selecionado:', filter, 'botão:', e.currentTarget);
+                currentPage = 1; 
+                filterContent(filter);
+            });
         });
-    });
     
     const modalClose = document.querySelector('.modal-close');
     if (modalClose) {
@@ -440,5 +496,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
     
     setupSearch();
-    setupPagination();
 });

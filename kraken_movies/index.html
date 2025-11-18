@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container">
+        
         <header class="header"> 
             <div class="header-content">
                 <h1 class="header-title">Kraken Movies</h1>
@@ -19,9 +20,10 @@
                 <img src="src/image/kraken_movies_logoS.png" alt="logo">
             </div>
         </header>
-       
-        <div class="search-container">
+        
         <section class="search-section">
+            
+            <div class="search-container">
                 <input 
                     type="text" 
                     id="searchInput" 
@@ -30,25 +32,27 @@
                     autocomplete="off"
                 >
                 <button id="searchBtn" class="search-btn">Search</button>
-            </div>
-
+            </div> 
+                    
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">ALL</button>
                 <button class="filter-btn" data-filter="movies">MOVIES</button>
                 <button class="filter-btn" data-filter="series">SERIES</button>
                 <button class="filter-btn" data-filter="kids">ANIMATION</button>
                 <button class="filter-btn" data-filter="genre">GENRE</button>
-            </div>
-        </section>
+            </div> 
+            
+        </section> 
 
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p>Loading content...</p>
+            <p>Carregando...</p>
         </div>
         <div id="error" class="error hidden"></div>
 
         <section class="content-section">
             <div id="tabsContainer" class="tabs-container">
+                
                 <div id="moviesTab" class="tab-content">
                     <div class="section-header">
                         <h2>Movies</h2>
@@ -69,19 +73,17 @@
                     </div>
                     <div id="kidsCategories" class="categories-container"></div>
                 </div>
-            </div>
-        </section>
-
-                <div id="genreTab" class="tab-content">
-                    <div class="section-header">
-                        <h2>Genres</h2>
-                    </div>
-                    <div id="genreCategories" class="categories-container"></div>
+            </div> <div id="genreTab" class="tab-content">
+                <div class="section-header">
+                    <h2>Genres</h2>
                 </div>
+                <div id="genreCategories" class="categories-container"></div>
+            </div>
         
+        </section> 
 
         <div id="noResults" class="no-results hidden">
-            <p>No results found, prease try another search!</p>
+            <p>No results found, please try another search!</p>
         </div>
 
         <div id="pagination" class="pagination hidden">
@@ -89,9 +91,7 @@
             <span id="pageInfo" class="page-info">Página 1</span>
             <button id="nextBtn" class="pagination-btn">Next →</button>
         </div>
-    </div>
-
-    <div id="movieModal" class="modal hidden">
+    </div> <div id="movieModal" class="modal hidden">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
             <div class="modal-body">
@@ -110,9 +110,11 @@
             </div>
         </div>
     </div>
-<footer>
-    <p>© 2025 Kraken Movies. Ivanildo Araújo e Jefferson Melo. TSC (UESPI-campus de Parnaíba)</p>
-</footer>
+
+    <footer>
+        <p>© 2025 Kraken Movies. Ivanildo Araújo e Jefferson Melo. TSC (UESPI-campus de Parnaíba)</p>
+    </footer>
+
     <script src="src/script.js"></script>
 </body>
 </html>
